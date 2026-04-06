@@ -4,7 +4,7 @@
  * PROG2005 Assessment 2 Part 2
  * Angular Inventory Management App
  */
-/* 导航栏样式 */
+/* Navigation bar styles */
 .navbar {
   background-color: #1e293b;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -51,7 +51,7 @@
   padding: 2rem;
 }
 
-/* 响应式导航栏 */
+/* Responsive navigation bar */
 @media (max-width: 768px) {
   .nav-container {
     flex-direction: column;

@@ -5,7 +5,7 @@
  * Angular Inventory Management App
  */
 import { Routes } from '@angular/router';
-// 适配新版Angular的简化文件名（去掉了 .component）
+// Adapted to new Angular simplified file naming (removed .component suffix)
 import { HomeComponent } from './pages/home/home';
 import { InventoryManageComponent } from './pages/inventory-manage/inventory-manage';
 import { ItemSearchComponent } from './pages/item-search/item-search';
