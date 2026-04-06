@@ -4,52 +4,66 @@
  * PROG2005 Assessment 2 Part 1
  * TypeScript Inventory Management System
  */
-// 1. 定义枚举类型（固定选项，避免输入错误）
+// 1. Define enum types (fixed options to avoid input errors)
 export var Category;
 (function (Category) {
     Category["Electronics"] = "Electronics";
     Category["Furniture"] = "Furniture";
     Category["Clothing"] = "Clothing";
+
     Category["Tools"] = "Tools";
     Category["Miscellaneous"] = "Miscellaneous";
 })(Category || (Category = {}));
+
 export var StockStatus;
 (function (StockStatus) {
     StockStatus["InStock"] = "In Stock";
     StockStatus["LowStock"] = "Low Stock";
     StockStatus["OutOfStock"] = "Out of Stock";
+
 })(StockStatus || (StockStatus = {}));
 export var PopularStatus;
 (function (PopularStatus) {
     PopularStatus["Yes"] = "Yes";
+
     PopularStatus["No"] = "No";
 })(PopularStatus || (PopularStatus = {}));
-// 3. 初始化库存数组
+// 3. Initialize inventory array
 let inventoryList = [
     
     {
         itemId: "001",
         itemName: "Wireless Headphones",
+
+
         category: Category.Electronics,
         quantity: 50,
+
+
         price: 199.99,
         supplierName: "Audio Tech Ltd",
         stockStatus: StockStatus.InStock,
         popularItem: PopularStatus.Yes,
+
+
         comment: "Best seller for 2026"
     },
     {
         itemId: "002",
         itemName: "Office Desk",
         category: Category.Furniture,
+
+
         quantity: 5,
         price: 299.99,
         supplierName: "Furniture World",
+
+
         stockStatus: StockStatus.LowStock,
         popularItem: PopularStatus.No
     }
 ];
-// 4. 工具函数：根据数量自动更新库存状态
+// 4. Utility function: Auto-update stock status based on quantity
 function updateStockStatus(quantity) {
     if (quantity <= 0)
         return StockStatus.OutOfStock;
@@ -57,21 +71,23 @@ function updateStockStatus(quantity) {
         return StockStatus.LowStock;
     return StockStatus.InStock;
 }
-// 5. 工具函数：页面渲染
+// 5. Utility function: Page rendering
 function renderMessage(message, isError = false) {
     const messageElement = document.getElementById("message-box");
+
     messageElement.innerHTML = message;
+
     messageElement.style.color = isError ? "#dc2626" : "#059669";
-    // 3秒后自动清空消息
+    // Auto-clear message after 3 seconds
     setTimeout(() => { messageElement.innerHTML = ""; }, 3000);
 }
-// ===================== 核心功能实现=====================
+// ===================== Core Feature Implementation =====================
 /**
- * 1. 添加商品功能
- * 作业要求：Item ID唯一、必填字段校验、数据验证
+ * 1. Add item feature
+ * Assignment requirements: Unique Item ID, required field validation, data validation
  */
 function addItem() {
-    // 获取表单输入值
+    // Get form input values
     const itemId = document.getElementById("item-id").value.trim();
     const itemName = document.getElementById("item-name").value.trim();
     const category = document.getElementById("category").value;
@@ -80,22 +96,22 @@ function addItem() {
     const supplierName = document.getElementById("supplier-name").value.trim();
     const popularItem = document.getElementById("popular-item").value;
     const comment = document.getElementById("comment").value.trim();
-    // 数据校验1：必填项不能为空
+    // Validation 1: Required fields cannot be empty
     if (!itemId || !itemName || !category || isNaN(quantity) || isNaN(price) || !supplierName || !popularItem) {
-        renderMessage("错误：除备注外，所有字段必须填写！", true);
+        renderMessage("Error: All fields except comment are required!", true);
         return;
     }
-    // 数据校验2：Item ID必须唯一
+    // Validation 2: Item ID must be unique
     if (inventoryList.some(item => item.itemId === itemId)) {
-        renderMessage("错误：Item ID已存在，必须唯一！", true);
+        renderMessage("Error: Item ID already exists, must be unique!", true);
         return;
     }
-    // 数据校验3：数量和价格必须大于0
+    // Validation 3: Quantity and price must be greater than 0
     if (quantity < 0 || price <= 0) {
-        renderMessage("错误：数量不能为负数，价格必须大于0！", true);
+        renderMessage("Error: Quantity cannot be negative, price must be greater than 0!", true);
         return;
     }
-    // 创建新商品
+    // Create new item
     const newItem = {
         itemId,
         itemName,
@@ -107,126 +123,126 @@ function addItem() {
         popularItem: popularItem,
         comment: comment || undefined
     };
-    // 添加到库存数组
+    // Add to inventory array
     inventoryList.push(newItem);
-    renderMessage("✅ 商品添加成功！");
-    // 清空表单
+    renderMessage("✅ Item added successfully!");
+    // Clear form
     clearForm();
-    // 重新渲染列表
+    // Re-render list
     renderAllItems();
 }
 /**
- * 2. 按商品名称更新/编辑商品
+ * 2. Update/edit item by item name
  */
 function updateItem() {
     const itemName = document.getElementById("search-name").value.trim();
     if (!itemName) {
-        renderMessage("错误：请输入要编辑的商品名称！", true);
+        renderMessage("Error: Please enter the item name to edit!", true);
         return;
     }
-    // 查找商品
+    // Find item
     const itemIndex = inventoryList.findIndex(item => item.itemName.toLowerCase() === itemName.toLowerCase());
     if (itemIndex === -1) {
-        renderMessage("错误：未找到该商品！", true);
+        renderMessage("Error: Item not found!", true);
         return;
     }
-    // 获取新的输入值
+    // Get new input values
     const newQuantity = Number(document.getElementById("update-quantity").value.trim());
     const newPrice = Number(document.getElementById("update-price").value.trim());
     const newSupplier = document.getElementById("update-supplier").value.trim();
     const newPopular = document.getElementById("update-popular").value;
     const newComment = document.getElementById("update-comment").value.trim();
-    // 数据校验
+    // Data validation
     if (isNaN(newQuantity) || isNaN(newPrice) || !newSupplier || !newPopular) {
-        renderMessage("错误：所有编辑字段必须填写有效内容！", true);
+        renderMessage("Error: All edit fields must contain valid content!", true);
         return;
     }
     if (newQuantity < 0 || newPrice <= 0) {
-        renderMessage("错误：数量不能为负数，价格必须大于0！", true);
+        renderMessage("Error: Quantity cannot be negative, price must be greater than 0!", true);
         return;
     }
-    // 更新商品信息
+    // Update item information
     inventoryList[itemIndex].quantity = newQuantity;
     inventoryList[itemIndex].price = newPrice;
     inventoryList[itemIndex].supplierName = newSupplier;
     inventoryList[itemIndex].popularItem = newPopular;
     inventoryList[itemIndex].comment = newComment || undefined;
     inventoryList[itemIndex].stockStatus = updateStockStatus(newQuantity);
-    renderMessage("✅ 商品信息更新成功！");
+    renderMessage("✅ Item updated successfully!");
     clearUpdateForm();
     renderAllItems();
 }
 /**
- * 3. 按商品名称删除商品
+ * 3. Delete item by item name
  */
 function deleteItem() {
     const itemName = document.getElementById("delete-name").value.trim();
     if (!itemName) {
-        renderMessage("错误：请输入要删除的商品名称！", true);
+        renderMessage("Error: Please enter the item name to delete!", true);
         return;
     }
-    // 查找商品
+    // Find item
     const itemIndex = inventoryList.findIndex(item => item.itemName.toLowerCase() === itemName.toLowerCase());
     if (itemIndex === -1) {
-        renderMessage("错误：未找到该商品！", true);
+        renderMessage("Error: Item not found!", true);
         return;
     }
-    // 确认删除提示
-    const isConfirm = confirm(`确定要删除商品「${itemName}」吗？此操作不可撤销！`);
+    // Confirmation prompt
+    const isConfirm = confirm(`Are you sure you want to delete item "${itemName}"? This action cannot be undone!`);
     if (!isConfirm)
         return;
-    // 执行删除
+    // Execute deletion
     inventoryList.splice(itemIndex, 1);
-    renderMessage("✅ 商品删除成功！");
+    renderMessage("✅ Item deleted successfully!");
     document.getElementById("delete-name").value = "";
     renderAllItems();
 }
 /**
- * 4. 按商品名称搜索功能（作业要求）
+ * 4. Search item by name feature (Assignment requirement)
  */
 function searchItem() {
     const searchKeyword = document.getElementById("search-input").value.trim().toLowerCase();
     if (!searchKeyword) {
-        renderMessage("请输入搜索关键词！", true);
+        renderMessage("Please enter a search keyword!", true);
         return;
     }
-    // 模糊搜索商品名称
+    // Fuzzy search item name
     const searchResult = inventoryList.filter(item => item.itemName.toLowerCase().includes(searchKeyword));
     const tableBody = document.getElementById("item-table-body");
     if (searchResult.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 1rem;">未找到匹配的商品</td></tr>`;
-        renderMessage("未找到匹配的商品", true);
+        tableBody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 1rem;">No matching items found</td></tr>`;
+        renderMessage("No matching items found", true);
         return;
     }
-    // 渲染搜索结果
+    // Render search results
     renderItemList(searchResult);
-    renderMessage(`✅ 找到${searchResult.length}个匹配商品`);
+    renderMessage(`✅ Found ${searchResult.length} matching item(s)`);
 }
 /**
- * 5. 渲染所有商品（作业要求）
+ * 5. Render all items (Assignment requirement)
  */
 function renderAllItems() {
     renderItemList(inventoryList);
 }
 /**
- * 6. 渲染所有热门商品（作业要求）
+ * 6. Render all popular items (Assignment requirement)
  */
 function renderPopularItems() {
     const popularItems = inventoryList.filter(item => item.popularItem === PopularStatus.Yes);
     if (popularItems.length === 0) {
-        renderMessage("暂无热门商品", true);
+        renderMessage("No popular items available", true);
         renderItemList([]);
         return;
     }
     renderItemList(popularItems);
-    renderMessage(`✅ 已筛选出${popularItems.length}个热门商品`);
+    renderMessage(`✅ Filtered ${popularItems.length} popular item(s)`);
 }
-// ===================== 辅助工具函数 =====================
-// 渲染商品列表到表格
+// ===================== Helper Utility Functions =====================
+// Render item list to table
 function renderItemList(items) {
     const tableBody = document.getElementById("item-table-body");
     if (items.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 1rem;">暂无商品数据</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 1rem;">No item data available</td></tr>`;
         return;
     }
     tableBody.innerHTML = items.map(item => `
@@ -243,7 +259,7 @@ function renderItemList(items) {
     </tr>
   `).join("");
 }
-// 清空添加表单
+// Clear add form
 function clearForm() {
     document.getElementById("item-id").value = "";
     document.getElementById("item-name").value = "";
@@ -254,7 +270,7 @@ function clearForm() {
     document.getElementById("popular-item").value = "";
     document.getElementById("comment").value = "";
 }
-// 清空编辑表单
+// Clear update form
 function clearUpdateForm() {
     document.getElementById("search-name").value = "";
     document.getElementById("update-quantity").value = "";
@@ -263,10 +279,10 @@ function clearUpdateForm() {
     document.getElementById("update-popular").value = "";
     document.getElementById("update-comment").value = "";
 }
-// ===================== 页面加载后绑定事件 =====================
-// 页面DOM加载完成后，绑定所有按钮的点击事件
+// ===================== Bind Events After Page Load =====================
+// After DOM loads, bind all button click events
 document.addEventListener("DOMContentLoaded", () => {
-    // 绑定按钮事件
+    // Bind button events
     document.getElementById("add-btn").addEventListener("click", addItem);
     document.getElementById("update-btn").addEventListener("click", updateItem);
     document.getElementById("delete-btn").addEventListener("click", deleteItem);
@@ -274,6 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("show-all-btn").addEventListener("click", renderAllItems);
     document.getElementById("show-popular-btn").addEventListener("click", renderPopularItems);
     document.getElementById("clear-form-btn").addEventListener("click", clearForm);
-    // 页面加载时渲染初始数据
+    // Render initial data when page loads
     renderAllItems();
 });
