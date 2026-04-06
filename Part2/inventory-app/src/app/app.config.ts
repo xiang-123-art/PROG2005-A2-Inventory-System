@@ -14,7 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    // 正式版无 Zone 模式（去掉了 Experimental）
+    // Production zoneless mode (Experimental removed)
     provideZonelessChangeDetection(),
     provideRouter(routes),
     importProvidersFrom(BrowserModule, CommonModule, ReactiveFormsModule)

@@ -36,7 +36,7 @@ h3 {
   font-size: 1.2rem;
 }
 
-/* 表单通用样式 */
+/* Form common styles */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -84,7 +84,7 @@ input:focus, select:focus {
   margin-top: 0.25rem;
 }
 
-/* 按钮通用样式 */
+/* Button common styles */
 .btn-group {
   display: flex;
   gap: 1rem;
@@ -134,7 +134,7 @@ input:focus, select:focus {
   background-color: #b91c1c;
 }
 
-/* 卡片通用样式 */
+/* Card common styles */
 .card {
   background: white;
   padding: 2rem;
@@ -143,7 +143,7 @@ input:focus, select:focus {
   margin-bottom: 2rem;
 }
 
-/* 表格通用样式 */
+/* Table common styles */
 .table-wrapper {
   overflow-x: auto;
   margin-top: 1rem;
@@ -174,7 +174,7 @@ tbody tr:hover {
   background-color: #f8fafc;
 }
 
-/* 消息提示样式 */
+/* Message notification styles */
 .message-box {
   padding: 1rem;
   border-radius: 0.5rem;
@@ -197,7 +197,7 @@ tbody tr:hover {
   color: #991b1b;
 }
 
-/* 响应式适配 */
+/* Responsive design */
 @media (max-width: 768px) {
   h1 {
     font-size: 1.5rem;

@@ -8,6 +8,6 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app';
 
-// 确保启动时使用正确的配置，同时打印错误方便排查
+// Ensure correct configuration is used at startup, and print errors for troubleshooting
 bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error('Angular启动失败:', err));
+  .catch((err) => console.error('Angular startup failed:', err));
