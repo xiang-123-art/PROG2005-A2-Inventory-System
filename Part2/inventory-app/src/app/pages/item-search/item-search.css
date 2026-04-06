@@ -20,12 +20,15 @@
 
 @media (max-width: 768px) {
   .search-form {
+
+
     flex-direction: column;
     align-items: stretch;
   }
 
   .search-form .btn-group {
     width: 100%;
+
     flex-direction: column;
   }
 
