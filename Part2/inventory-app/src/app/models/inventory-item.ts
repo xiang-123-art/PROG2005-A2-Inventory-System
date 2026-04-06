@@ -1,5 +1,5 @@
-// 作者：你的名字
-// 库存商品数据模型
+// Author: XiangHu
+// Inventory item data model
 
 export enum Category {
   Electronics = "Electronics",

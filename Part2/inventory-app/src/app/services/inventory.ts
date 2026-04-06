@@ -8,10 +8,10 @@ import { Injectable } from '@angular/core';
 import { Category, InventoryItem, PopularStatus, StockStatus } from '../models/inventory-item';
 
 @Injectable({
-  providedIn: 'root' // 全局可用，不用额外配置
+  providedIn: 'root' // Global availability, no additional configuration needed
 })
 export class InventoryService {
-  // 库存数据存储（会话内持久化，浏览器开着数据就存在）
+  // Inventory data storage (session persistence, data exists while browser is open)
   private inventoryList: InventoryItem[] = [
     {
       itemId: "001",
@@ -38,56 +38,56 @@ export class InventoryService {
 
   constructor() { }
 
-  // 1. 获取所有商品
+  // 1. Get all items
   getAllItems(): InventoryItem[] {
     return [...this.inventoryList];
   }
 
-  // 2. 获取热门商品
+  // 2. Get popular items
   getPopularItems(): InventoryItem[] {
     return this.inventoryList.filter(item => item.popularItem === PopularStatus.Yes);
   }
 
-  // 3. 按名称搜索商品
+  // 3. Search items by name
   searchItemsByName(keyword: string): InventoryItem[] {
     const lowerKeyword = keyword.trim().toLowerCase();
     return this.inventoryList.filter(item => item.itemName.toLowerCase().includes(lowerKeyword));
   }
 
-  // 4. 按名称查找单个商品
+  // 4. Get single item by name
   getItemByName(itemName: string): InventoryItem | undefined {
     return this.inventoryList.find(item => item.itemName.toLowerCase() === itemName.trim().toLowerCase());
   }
 
-  // 5. 添加商品
+  // 5. Add item
   addItem(item: InventoryItem): { success: boolean; message: string } {
-    // 校验ID唯一性
+    // Validate ID uniqueness
     if (this.inventoryList.some(i => i.itemId === item.itemId)) {
       return { success: false, message: "Error: Item ID already exists, must be unique!" };
     }
-    // 校验必填项
+    // Validate required fields
     if (!item.itemId || !item.itemName || !item.category || !item.supplierName || !item.popularItem) {
       return { success: false, message: "Error: All fields except comment are required!" };
     }
-    // 校验数值
+    // Validate numeric values
     if (item.quantity < 0 || item.price <= 0) {
       return { success: false, message: "Error: Quantity cannot be negative, price must be greater than 0!" };
     }
 
-    // 自动更新库存状态
+    // Auto-update stock status
     item.stockStatus = this.updateStockStatus(item.quantity);
     this.inventoryList.push(item);
     return { success: true, message: "Item added successfully!" };
   }
 
-  // 6. 按名称更新商品
+  // 6. Update item by name
   updateItemByName(itemName: string, updatedData: Partial<InventoryItem>): { success: boolean; message: string } {
     const itemIndex = this.inventoryList.findIndex(item => item.itemName.toLowerCase() === itemName.trim().toLowerCase());
     if (itemIndex === -1) {
       return { success: false, message: "Error: Item not found!" };
     }
 
-    // 校验数值
+    // Validate numeric values
     if (updatedData.quantity !== undefined && updatedData.quantity < 0) {
       return { success: false, message: "Error: Quantity cannot be negative!" };
     }
@@ -95,13 +95,13 @@ export class InventoryService {
       return { success: false, message: "Error: Price must be greater than 0!" };
     }
 
-    // 更新数据
+    // Update data
     this.inventoryList[itemIndex] = {
       ...this.inventoryList[itemIndex],
       ...updatedData
     };
 
-    // 更新库存状态
+    // Update stock status
     if (updatedData.quantity !== undefined) {
       this.inventoryList[itemIndex].stockStatus = this.updateStockStatus(updatedData.quantity);
     }
@@ -109,7 +109,7 @@ export class InventoryService {
     return { success: true, message: "Item updated successfully!" };
   }
 
-  // 7. 按名称删除商品
+  // 7. Delete item by name
   deleteItemByName(itemName: string): { success: boolean; message: string } {
     const itemIndex = this.inventoryList.findIndex(item => item.itemName.toLowerCase() === itemName.trim().toLowerCase());
     if (itemIndex === -1) {
@@ -120,7 +120,7 @@ export class InventoryService {
     return { success: true, message: "Item deleted successfully!" };
   }
 
-  // 工具函数：根据数量自动更新库存状态
+  // Utility function: Auto-update stock status based on quantity
   private updateStockStatus(quantity: number): StockStatus {
     if (quantity <= 0) return StockStatus.OutOfStock;
     if (quantity <= 10) return StockStatus.LowStock;
