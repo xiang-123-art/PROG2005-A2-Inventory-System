@@ -1,0 +1,18 @@
+.operation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.operation-card {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .operation-grid {
+    grid-template-columns: 1fr;
+  }
+}

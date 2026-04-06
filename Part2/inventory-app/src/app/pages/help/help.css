@@ -1,0 +1,29 @@
+.intro {
+  font-size: 1.1rem;
+  color: #475569;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.faq-item, .troubleshooting-item {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+p, li {
+  color: #475569;
+  line-height: 1.8;
+}
+
+section {
+  margin-bottom: 2rem;
+}

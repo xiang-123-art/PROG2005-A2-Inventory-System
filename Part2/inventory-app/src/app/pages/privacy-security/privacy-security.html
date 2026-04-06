@@ -1,0 +1,79 @@
+<div class="card">
+  <h1>Privacy & Security Requirements Analysis</h1>
+  <p class="intro">
+    This page outlines the key privacy and security considerations for this mobile inventory management application, 
+    aligned with the requirements of PROG2005 Programming Mobile Systems unit.
+  </p>
+
+  <section>
+    <h2>1. Core Security Requirements</h2>
+    <div class="content-section">
+      <h3>Input Validation & Data Integrity</h3>
+      <p>
+        This application implements strict client-side input validation for all user inputs, including:
+      </p>
+      <ul>
+        <li>Required field checks to prevent incomplete data submission</li>
+        <li>Numeric field validation (quantity ≥ 0, price > 0) to avoid invalid data</li>
+        <li>Unique Item ID enforcement to maintain data integrity in the inventory database</li>
+        <li>Type safety via TypeScript, ensuring all data conforms to predefined interfaces and prevents type-related vulnerabilities</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h3>Client-Side Data Protection</h3>
+      <p>
+        As a client-side only application (no server-side interaction), all data is stored in the application's memory during the user session. 
+        Key protections include:
+      </p>
+      <ul>
+        <li>Session-only data persistence: All inventory data is cleared when the browser tab is closed, preventing unauthorized access to sensitive inventory data after the session ends</li>
+        <li>No local storage usage: Avoids persistent storage of sensitive business data on the user's device, reducing the risk of data leakage</li>
+        <li>Isolated data access: Inventory data is encapsulated within Angular services, preventing unauthorized access from external scripts</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h3>User Action Authentication</h3>
+      <p>
+        The application implements confirmation prompts for destructive actions:
+      </p>
+      <ul>
+        <li>Delete operations require explicit user confirmation before execution, preventing accidental data loss from unintended clicks</li>
+        <li>All data modification actions (add, edit, delete) provide immediate user feedback, ensuring users are fully aware of the outcome of their actions</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Privacy Considerations</h2>
+    <div class="content-section">
+      <h3>User Data Collection</h3>
+      <p>
+        This application <strong>does not collect, transmit, or store any personal user data</strong> to external servers or third-party services. 
+        All data entered by the user remains entirely on the client-side within the browser session.
+      </p>
+    </div>
+
+    <div class="content-section">
+      <h3>Mobile-Specific Privacy Risks Mitigation</h3>
+      <p>
+        For mobile device users, the application addresses key mobile privacy risks:
+      </p>
+      <ul>
+        <li>Responsive design ensures the application does not request unnecessary device permissions (e.g., camera, location, storage), minimizing privacy exposure</li>
+        <li>No background data processing, ensuring the application only operates when actively used by the user</li>
+        <li>Compatible with mobile browser privacy features, including incognito/private browsing modes for enhanced session privacy</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Ongoing Security Best Practices</h2>
+    <ul>
+      <li>Regular dependency updates: Angular and TypeScript dependencies are kept up to date to patch known security vulnerabilities</li>
+      <li>Secure coding practices: All code follows type-safe development practices, avoiding common client-side vulnerabilities like XSS (Cross-Site Scripting)</li>
+      <li>User education: The help page provides guidance for users on secure usage of the application, including not sharing sensitive inventory data in unsecure environments</li>
+    </ul>
+  </section>
+</div>

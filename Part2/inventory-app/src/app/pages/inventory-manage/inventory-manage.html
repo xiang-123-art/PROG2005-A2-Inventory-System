@@ -1,0 +1,121 @@
+<div class="card">
+  <h1>Inventory Item Management</h1>
+  <div *ngIf="message" class="message-box" [ngClass]="isError ? 'error-message' : 'success-message'">
+    {{ message }}
+  </div>
+
+  <section>
+    <h2>Add New Item</h2>
+    <form [formGroup]="addItemForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Item ID (Unique)*</label>
+          <input type="text" formControlName="itemId" [ngClass]="{'invalid-input': addItemForm.get('itemId')?.invalid && addItemForm.get('itemId')?.touched}">
+          <div *ngIf="addItemForm.get('itemId')?.invalid && addItemForm.get('itemId')?.touched" class="error-text">Item ID is required</div>
+        </div>
+        <div class="form-group">
+          <label>Item Name*</label>
+          <input type="text" formControlName="itemName" [ngClass]="{'invalid-input': addItemForm.get('itemName')?.invalid && addItemForm.get('itemName')?.touched}">
+          <div *ngIf="addItemForm.get('itemName')?.invalid && addItemForm.get('itemName')?.touched" class="error-text">Item Name is required</div>
+        </div>
+        <div class="form-group">
+          <label>Category*</label>
+          <select formControlName="category" [ngClass]="{'invalid-input': addItemForm.get('category')?.invalid && addItemForm.get('category')?.touched}">
+            <option value="">Select Category</option>
+            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+          </select>
+          <div *ngIf="addItemForm.get('category')?.invalid && addItemForm.get('category')?.touched" class="error-text">Category is required</div>
+        </div>
+        <div class="form-group">
+          <label>Quantity*</label>
+          <input type="number" formControlName="quantity" min="0" [ngClass]="{'invalid-input': addItemForm.get('quantity')?.invalid && addItemForm.get('quantity')?.touched}">
+          <div *ngIf="addItemForm.get('quantity')?.invalid && addItemForm.get('quantity')?.touched" class="error-text">Quantity must be ≥ 0</div>
+        </div>
+        <div class="form-group">
+          <label>Price ($)*</label>
+          <input type="number" formControlName="price" min="0.01" step="0.01" [ngClass]="{'invalid-input': addItemForm.get('price')?.invalid && addItemForm.get('price')?.touched}">
+          <div *ngIf="addItemForm.get('price')?.invalid && addItemForm.get('price')?.touched" class="error-text">Price must be > 0</div>
+        </div>
+        <div class="form-group">
+          <label>Supplier Name*</label>
+          <input type="text" formControlName="supplierName" [ngClass]="{'invalid-input': addItemForm.get('supplierName')?.invalid && addItemForm.get('supplierName')?.touched}">
+          <div *ngIf="addItemForm.get('supplierName')?.invalid && addItemForm.get('supplierName')?.touched" class="error-text">Supplier Name is required</div>
+        </div>
+        <div class="form-group">
+          <label>Popular Item*</label>
+          <select formControlName="popularItem" [ngClass]="{'invalid-input': addItemForm.get('popularItem')?.invalid && addItemForm.get('popularItem')?.touched}">
+            <option value="">Select Option</option>
+            <option *ngFor="let opt of popularOptions" [value]="opt">{{ opt }}</option>
+          </select>
+          <div *ngIf="addItemForm.get('popularItem')?.invalid && addItemForm.get('popularItem')?.touched" class="error-text">This field is required</div>
+        </div>
+        <div class="form-group full-width">
+          <label>Comment</label>
+          <input type="text" formControlName="comment">
+        </div>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn primary-btn" (click)="onAddItem()" [disabled]="addItemForm.invalid">Add Item</button>
+        <button type="button" class="btn secondary-btn" (click)="clearForm(addItemForm)">Clear Form</button>
+      </div>
+    </form>
+  </section>
+</div>
+
+<div class="card">
+  <div class="operation-grid">
+    <div class="operation-card">
+      <h3>Edit Item (By Name)</h3>
+      <form [formGroup]="updateItemForm">
+        <div class="form-group">
+          <label>Item Name to Edit*</label>
+          <input type="text" formControlName="itemName" [ngClass]="{'invalid-input': updateItemForm.get('itemName')?.invalid && updateItemForm.get('itemName')?.touched}">
+          <div *ngIf="updateItemForm.get('itemName')?.invalid && updateItemForm.get('itemName')?.touched" class="error-text">Item Name is required</div>
+        </div>
+        <div class="form-group">
+          <label>New Quantity*</label>
+          <input type="number" formControlName="quantity" min="0" [ngClass]="{'invalid-input': updateItemForm.get('quantity')?.invalid && updateItemForm.get('quantity')?.touched}">
+          <div *ngIf="updateItemForm.get('quantity')?.invalid && updateItemForm.get('quantity')?.touched" class="error-text">Quantity must be ≥ 0</div>
+        </div>
+        <div class="form-group">
+          <label>New Price ($)*</label>
+          <input type="number" formControlName="price" min="0.01" step="0.01" [ngClass]="{'invalid-input': updateItemForm.get('price')?.invalid && updateItemForm.get('price')?.touched}">
+          <div *ngIf="updateItemForm.get('price')?.invalid && updateItemForm.get('price')?.touched" class="error-text">Price must be > 0</div>
+        </div>
+        <div class="form-group">
+          <label>New Supplier Name*</label>
+          <input type="text" formControlName="supplierName" [ngClass]="{'invalid-input': updateItemForm.get('supplierName')?.invalid && updateItemForm.get('supplierName')?.touched}">
+          <div *ngIf="updateItemForm.get('supplierName')?.invalid && updateItemForm.get('supplierName')?.touched" class="error-text">Supplier Name is required</div>
+        </div>
+        <div class="form-group">
+          <label>New Popular Status*</label>
+          <select formControlName="popularItem" [ngClass]="{'invalid-input': updateItemForm.get('popularItem')?.invalid && updateItemForm.get('popularItem')?.touched}">
+            <option value="">Select Option</option>
+            <option *ngFor="let opt of popularOptions" [value]="opt">{{ opt }}</option>
+          </select>
+          <div *ngIf="updateItemForm.get('popularItem')?.invalid && updateItemForm.get('popularItem')?.touched" class="error-text">This field is required</div>
+        </div>
+        <div class="form-group">
+          <label>New Comment</label>
+          <input type="text" formControlName="comment">
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn primary-btn full-width" (click)="onUpdateItem()" [disabled]="updateItemForm.invalid">Update Item</button>
+          <button type="button" class="btn secondary-btn full-width" (click)="clearForm(updateItemForm)">Clear Form</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="operation-card">
+      <h3>Delete Item (By Name)</h3>
+      <form [formGroup]="deleteItemForm">
+        <div class="form-group">
+          <label>Item Name to Delete*</label>
+          <input type="text" formControlName="itemName" [ngClass]="{'invalid-input': deleteItemForm.get('itemName')?.invalid && deleteItemForm.get('itemName')?.touched}">
+          <div *ngIf="deleteItemForm.get('itemName')?.invalid && deleteItemForm.get('itemName')?.touched" class="error-text">Item Name is required</div>
+        </div>
+        <button type="button" class="btn danger-btn full-width" (click)="onDeleteItem()" [disabled]="deleteItemForm.invalid">Delete Item</button>
+      </form>
+    </div>
+  </div>
+</div>

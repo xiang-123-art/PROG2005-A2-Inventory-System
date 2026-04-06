@@ -1,0 +1,222 @@
+/*
+ * Author: XiangHu
+ * Student ID: 24832203
+ * PROG2005 Assessment 2 Part 2
+ * Angular Inventory Management App
+ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #f8fafc;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+h2 {
+  color: #334155;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  color: #475569;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+/* 表单通用样式 */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-weight: 600;
+  color: #334155;
+  font-size: 0.9rem;
+}
+
+input, select {
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.invalid-input {
+  border-color: #dc2626;
+}
+
+.error-text {
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* 按钮通用样式 */
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primary-btn {
+  background-color: #2563eb;
+  color: white;
+}
+
+.primary-btn:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.secondary-btn {
+  background-color: #64748b;
+  color: white;
+}
+
+.secondary-btn:hover:not(:disabled) {
+  background-color: #475569;
+}
+
+.danger-btn {
+  background-color: #dc2626;
+  color: white;
+}
+
+.danger-btn:hover:not(:disabled) {
+  background-color: #b91c1c;
+}
+
+/* 卡片通用样式 */
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+/* 表格通用样式 */
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+thead {
+  background-color: #f1f5f9;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* 消息提示样式 */
+.message-box {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-message {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

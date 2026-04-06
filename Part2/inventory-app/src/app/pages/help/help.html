@@ -1,0 +1,86 @@
+<div class="card">
+  <h1>Help & FAQ</h1>
+  <p class="intro">Find answers to frequently asked questions and troubleshooting guidance for using this inventory management system.</p>
+
+  <section>
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h3>Q: Will my inventory data be saved after I close the browser?</h3>
+      <p>
+        A: No. This application is designed to store data only during your active browser session. 
+        All inventory data will be cleared when you close the browser tab or window, as there is no server-side or local storage persistence.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Q: Why can't I add an item with an existing Item ID?</h3>
+      <p>
+        A: The Item ID must be unique for each inventory item, as it serves as the primary identifier for each record. 
+        If you receive an error that the Item ID already exists, please use a different unique ID for your new item.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Q: How do I edit or delete an item?</h3>
+      <p>
+        A: You can edit or delete items using the item's exact name. Go to the Inventory Manage page, 
+        enter the full name of the item you want to modify in the Edit or Delete section, fill in the new details for editing, and submit the action.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Q: How is the Stock Status determined?</h3>
+      <p>
+        A: Stock Status is automatically updated based on the item quantity:
+        <br>- <strong>Out of Stock</strong>: Quantity = 0
+        <br>- <strong>Low Stock</strong>: Quantity between 1 and 10
+        <br>- <strong>In Stock</strong>: Quantity greater than 10
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Q: Can I use this application on my mobile phone?</h3>
+      <p>
+        A: Yes! This application is fully responsive, designed to work seamlessly on both narrow mobile screens and wide desktop screens. 
+        All features are accessible on mobile browsers.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Troubleshooting</h2>
+
+    <div class="troubleshooting-item">
+      <h3>Issue: Buttons are not working when I click them</h3>
+      <p>
+        <strong>Solution:</strong> Ensure all required fields in the form are filled correctly. Buttons will be disabled if the form has invalid or missing inputs. 
+        Check for error messages below each input field to fix validation issues.
+      </p>
+    </div>
+
+    <div class="troubleshooting-item">
+      <h3>Issue: Item not found when editing or deleting</h3>
+      <p>
+        <strong>Solution:</strong> The item name must match exactly (case-insensitive). Double-check the spelling of the item name in the inventory list, 
+        and ensure there are no extra spaces before or after the name in the input field.
+      </p>
+    </div>
+
+    <div class="troubleshooting-item">
+      <h3>Issue: Application is not displaying correctly on mobile</h3>
+      <p>
+        <strong>Solution:</strong> Ensure your mobile browser is up to date. If the layout is broken, try refreshing the page. 
+        The application is optimized for modern mobile browsers (Chrome, Safari, Firefox, Edge).
+      </p>
+    </div>
+
+    <div class="troubleshooting-item">
+      <h3>Issue: All my data disappeared</h3>
+      <p>
+        <strong>Solution:</strong> This is expected behavior. The application does not persist data after the browser session ends. 
+        If you refreshed the page, closed the tab, or your browser crashed, all data will be reset to the initial sample data.
+      </p>
+    </div>
+  </section>
+</div>

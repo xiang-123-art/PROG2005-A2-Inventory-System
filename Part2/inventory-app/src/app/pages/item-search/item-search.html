@@ -1,0 +1,55 @@
+<div class="card">
+  <h1>Item Search & Filter</h1>
+  <div *ngIf="message" class="message-box" [ngClass]="isError ? 'error-message' : 'success-message'">
+    {{ message }}
+  </div>
+
+  <div class="search-section">
+    <form [formGroup]="searchForm" class="search-form">
+      <div class="form-group">
+        <label>Search by Item Name</label>
+        <input type="text" formControlName="keyword" placeholder="Enter item name keyword">
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn primary-btn" (click)="onSearch()">Search</button>
+        <button type="button" class="btn secondary-btn" (click)="showAllItems()">Show All Items</button>
+        <button type="button" class="btn secondary-btn" (click)="showPopularItems()">Show Popular Items</button>
+      </div>
+    </form>
+  </div>
+
+  <h2>Item List</h2>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Item ID</th>
+          <th>Item Name</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Supplier</th>
+          <th>Stock Status</th>
+          <th>Popular</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="itemList.length === 0">
+          <td colspan="9" style="text-align: center; padding: 2rem;">No item data available</td>
+        </tr>
+        <tr *ngFor="let item of itemList">
+          <td>{{ item.itemId }}</td>
+          <td>{{ item.itemName }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ item.price.toFixed(2) }}</td>
+          <td>{{ item.supplierName }}</td>
+          <td>{{ item.stockStatus }}</td>
+          <td>{{ item.popularItem }}</td>
+          <td>{{ item.comment || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

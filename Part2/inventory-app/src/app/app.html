@@ -1,0 +1,24 @@
+/*
+ * Author: XiangHu
+ * Student ID: 24832203
+ * PROG2005 Assessment 2 Part 2
+ * Angular Inventory Management App
+ */
+<!-- 顶部导航栏 -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">Inventory System</div>
+    <div class="nav-menu">
+      <a routerLink="/" routerLinkActive="active">Home</a>
+      <a routerLink="/inventory-manage" routerLinkActive="active">Inventory Manage</a>
+      <a routerLink="/item-search" routerLinkActive="active">Search</a>
+      <a routerLink="/privacy-security" routerLinkActive="active">Privacy & Security</a>
+      <a routerLink="/help" routerLinkActive="active">Help</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 页面内容容器 -->
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
