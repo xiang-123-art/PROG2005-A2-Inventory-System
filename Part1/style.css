@@ -33,6 +33,7 @@ h2 {
   color: #334155;
   margin-bottom: 1rem;
   font-size: 1.5rem;
+
   border-bottom: 2px solid #e2e8f0;
   padding-bottom: 0.5rem;
 }
@@ -43,23 +44,26 @@ h3 {
   font-size: 1.2rem;
 }
 
-/* 消息提示框 */
+/* Message box */
 .message-box {
   padding: 1rem;
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
+
   text-align: center;
   font-weight: 600;
   min-height: 3rem;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* 表单区域样式 */
+/* Form section styles */
 .form-section {
   background: white;
   padding: 2rem;
+
   border-radius: 0.75rem;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   margin-bottom: 2rem;
@@ -67,6 +71,7 @@ h3 {
 
 .form-grid {
   display: grid;
+
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
   margin-bottom: 1.5rem;
@@ -85,6 +90,7 @@ h3 {
 label {
   font-weight: 600;
   color: #334155;
+
   font-size: 0.9rem;
 }
 
@@ -93,6 +99,7 @@ input, select {
   border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
   font-size: 1rem;
+
   transition: border-color 0.2s;
 }
 
@@ -102,7 +109,9 @@ input:focus, select:focus {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-/* 按钮样式 */
+
+
+/* Button styles */
 .btn-group {
   display: flex;
   gap: 1rem;
@@ -112,6 +121,10 @@ input:focus, select:focus {
 .btn-group.full-width {
   width: 100%;
 }
+
+
+
+
 
 .btn {
   padding: 0.75rem 1.5rem;
@@ -123,6 +136,8 @@ input:focus, select:focus {
   transition: background-color 0.2s;
 }
 
+
+
 .btn.full-width {
   width: 100%;
 }
@@ -131,6 +146,9 @@ input:focus, select:focus {
   background-color: #2563eb;
   color: white;
 }
+
+
+
 
 .primary-btn:hover {
   background-color: #1d4ed8;
@@ -141,6 +159,8 @@ input:focus, select:focus {
   color: white;
 }
 
+
+
 .secondary-btn:hover {
   background-color: #475569;
 }
@@ -150,14 +170,20 @@ input:focus, select:focus {
   color: white;
 }
 
+
+
+
 .danger-btn:hover {
   background-color: #b91c1c;
 }
 
-/* 操作区域样式 */
+/* Operations section styles */
 .operation-section {
   margin-bottom: 2rem;
 }
+
+
+
 
 .operation-grid {
   display: grid;
@@ -172,7 +198,7 @@ input:focus, select:focus {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* 表格样式 */
+/* Table styles */
 .table-section {
   background: white;
   padding: 2rem;
@@ -181,9 +207,13 @@ input:focus, select:focus {
 }
 
 .table-wrapper {
-  overflow-x: auto; /* 响应式：小屏幕横向滚动 */
+  overflow-x: auto; /* Responsive: horizontal scroll on small screens */
   margin-top: 1rem;
 }
+
+
+
+
 
 table {
   width: 100%;
@@ -206,11 +236,14 @@ th {
   color: #1e293b;
 }
 
+
+
+
 tbody tr:hover {
   background-color: #f8fafc;
 }
 
-/* 响应式适配（作业要求：适配窄/宽手机屏幕） */
+/* Responsive design (Assignment requirement: adapt to narrow/wide mobile screens) */
 @media (max-width: 768px) {
   body {
     padding: 1rem 0.5rem;
@@ -224,6 +257,9 @@ tbody tr:hover {
     padding: 1rem;
   }
 
+
+  
+
   .form-grid {
     grid-template-columns: 1fr;
   }
@@ -231,6 +267,8 @@ tbody tr:hover {
   .operation-grid {
     grid-template-columns: 1fr;
   }
+
+
 
   .btn-group {
     flex-direction: column;

@@ -10,18 +10,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PROG2005 A2 - Inventory System (TypeScript)</title>
-  <!-- 引入CSS样式 -->
+  <!-- Import CSS styles -->
   <link rel="stylesheet" href="style.css">
-  <!-- 引入编译后的JS文件 -->
+  <!-- Import compiled JS file -->
   <script type="module" src="./dist/app.js" defer></script>
 </head>
 <body>
   <div class="container">
     <h1>Inventory Management System</h1>
-    <!-- 消息提示框（替代alert，符合作业要求） -->
+    <!-- Message box (replaces alert, per assignment requirements) -->
     <div id="message-box" class="message-box"></div>
 
-    <!-- 1. 添加商品区域 -->
+
+
+
+    <!-- 1. Add Item Section -->
     <section class="form-section">
       <h2>Add New Item</h2>
       <div class="form-grid">
@@ -39,11 +42,13 @@
             <option value="">Select Category</option>
             <option value="Electronics">Electronics</option>
             <option value="Furniture">Furniture</option>
+            
             <option value="Clothing">Clothing</option>
             <option value="Tools">Tools</option>
             <option value="Miscellaneous">Miscellaneous</option>
           </select>
         </div>
+
         <div class="form-group">
           <label>Quantity*</label>
           <input type="number" id="quantity" min="0" placeholder="e.g. 50">
@@ -52,6 +57,7 @@
           <label>Price ($)*</label>
           <input type="number" id="price" min="0.01" step="0.01" placeholder="e.g. 199.99">
         </div>
+
         <div class="form-group">
           <label>Supplier Name*</label>
           <input type="text" id="supplier-name" placeholder="e.g. Audio Tech Ltd">
@@ -64,6 +70,7 @@
             <option value="No">No</option>
           </select>
         </div>
+
         <div class="form-group full-width">
           <label>Comment</label>
           <input type="text" id="comment" placeholder="Optional comment about the item">
@@ -75,20 +82,23 @@
       </div>
     </section>
 
-    <!-- 2. 编辑/删除/搜索操作区域 -->
+
+    <!-- 2. Edit/Delete/Search Operations Section -->
     <section class="operation-section">
       <div class="operation-grid">
-        <!-- 编辑商品 -->
+        <!-- Edit Item -->
         <div class="operation-card">
           <h3>Edit Item (By Name)</h3>
           <div class="form-group">
             <label>Item Name to Edit*</label>
             <input type="text" id="search-name" placeholder="Enter item name">
           </div>
+
           <div class="form-group">
             <label>New Quantity*</label>
             <input type="number" id="update-quantity" min="0" placeholder="New quantity">
           </div>
+
           <div class="form-group">
             <label>New Price ($)*</label>
             <input type="number" id="update-price" min="0.01" step="0.01" placeholder="New price">
@@ -100,36 +110,45 @@
           <div class="form-group">
             <label>New Popular Status*</label>
             <select id="update-popular">
+
               <option value="">Select Option</option>
               <option value="Yes">Yes</option>
+
               <option value="No">No</option>
             </select>
           </div>
           <div class="form-group">
+
             <label>New Comment</label>
             <input type="text" id="update-comment" placeholder="Optional comment">
           </div>
+
           <button id="update-btn" class="btn primary-btn full-width">Update Item</button>
         </div>
 
-        <!-- 删除商品 -->
+        <!-- Delete Item -->
         <div class="operation-card">
+
           <h3>Delete Item (By Name)</h3>
           <div class="form-group">
             <label>Item Name to Delete*</label>
+
             <input type="text" id="delete-name" placeholder="Enter item name">
           </div>
           <button id="delete-btn" class="btn danger-btn full-width">Delete Item</button>
         </div>
 
-        <!-- 搜索商品 -->
+        <!-- Search Item -->
         <div class="operation-card">
+
           <h3>Search Item (By Name)</h3>
           <div class="form-group">
             <label>Search Keyword*</label>
+
             <input type="text" id="search-input" placeholder="Enter item name keyword">
           </div>
           <div class="btn-group full-width">
+
             <button id="search-btn" class="btn primary-btn">Search</button>
             <button id="show-all-btn" class="btn secondary-btn">Show All</button>
             <button id="show-popular-btn" class="btn secondary-btn">Show Popular</button>
@@ -138,7 +157,7 @@
       </div>
     </section>
 
-    <!-- 3. 商品列表展示区域 -->
+    <!-- 3. Item List Display Section -->
     <section class="table-section">
       <h2>Inventory Item List</h2>
       <div class="table-wrapper">
@@ -148,9 +167,11 @@
               <th>Item ID</th>
               <th>Item Name</th>
               <th>Category</th>
+
               <th>Quantity</th>
               <th>Price</th>
               <th>Supplier</th>
+
               <th>Stock Status</th>
               <th>Popular</th>
               <th>Comment</th>
